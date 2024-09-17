@@ -1,4 +1,4 @@
-namespace Parking.Repositories;
+namespace Login.Repositories;
 public interface IRepository<T>
 {
     IQueryable<T> Get();

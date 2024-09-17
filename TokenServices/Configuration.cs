@@ -1,4 +1,4 @@
-namespace Parking.TokenServices;
+namespace Login.TokenServices;
 
 public static class Configuartion
 {

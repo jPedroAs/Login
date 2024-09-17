@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Parking.Entity;
+using Login.Entity;
 
 public class InterceptorsDTO : SaveChangesInterceptor
 {

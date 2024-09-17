@@ -1,14 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Bson;
-using Parking.Infra.Context;
+using Login.Infra.Context;
 
-namespace Parking.Repositories;
+namespace Login.Repositories;
 
 public class GenericRepository<T> : IRepository<T> where T : class
 {
-    private readonly ParkingMongoContext _context;
+    private readonly LoginMongoContext _context;
 
-    public GenericRepository(ParkingMongoContext context){
+    public GenericRepository(LoginMongoContext context){
         _context = context;
     }
 

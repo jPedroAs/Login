@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Parking.Entity;
+namespace Login.Entity;
 
 public class Register : BaseEntity
 {

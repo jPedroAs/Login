@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using Microsoft.IdentityModel.Tokens;
-using Parking.TokenServices;
-using Parking.Entity;
-using Parking.Infra.Context;
-using Parking.Repositories;
+using Login.TokenServices;
+using Login.Entity;
+using Login.Infra.Context;
+using Login.Repositories;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,9 +27,9 @@ builder.Services.AddAuthentication(x =>
 
 
 #region BD
-var connection = builder.Configuration.GetConnectionString("ParkingConnection");
-Console.WriteLine("ParkingConnection");
-builder.Services.AddDbContext<ParkingMongoContext>((option) => {
+var connection = builder.Configuration.GetConnectionString("LoginConnection");
+Console.WriteLine("LoginConnection");
+builder.Services.AddDbContext<LoginMongoContext>((option) => {
     option.UseMongoDB(connection!, "Login");
     option.AddInterceptors(new InterceptorsDTO());
 });

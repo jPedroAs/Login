@@ -2,13 +2,13 @@ using System.Net;
 using System.Security.Policy;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Parking.TokenServices;
-using Parking.ViewModels;
-using Parking.Entity;
-using Parking.Infra.Context;
-using Parking.Repositories;
+using Login.TokenServices;
+using Login.ViewModels;
+using Login.Entity;
+using Login.Infra.Context;
+using Login.Repositories;
 
-namespace Parking.API.Controllers;
+namespace Login.API.Controllers;
 
 [ApiController]
 public class AccountController : ControllerBase
@@ -16,8 +16,8 @@ public class AccountController : ControllerBase
     private readonly TokenService _tokenService; //Pablo isso aqui serve para gerar um dependência do obj
     private readonly PasswordHash _hash;
     private readonly IRepository<Register>_registerRepository;
-    private readonly ParkingMongoContext _mongoContext;
-    public AccountController(TokenService tokenService, PasswordHash hash, IRepository<Register> registerRepository,ParkingMongoContext mongoContext )
+    private readonly LoginMongoContext _mongoContext;
+    public AccountController(TokenService tokenService, PasswordHash hash, IRepository<Register> registerRepository,LoginMongoContext mongoContext )
     {
         _tokenService = tokenService;
         _hash = hash;

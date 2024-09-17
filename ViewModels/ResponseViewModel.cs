@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace Parking.ViewModels;
+namespace Login.ViewModels;
 
 public class ResponseViewModel
 {

@@ -3,14 +3,14 @@ using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using MongoDB.EntityFrameworkCore.Extensions;
-using Parking.Entity;
+using Login.Entity;
 
-namespace Parking.Infra.Context;
+namespace Login.Infra.Context;
 
-public class ParkingMongoContext : DbContext
+public class LoginMongoContext : DbContext
 {
     public DbSet<Register>? Registers { get; set; }
-    public ParkingMongoContext(DbContextOptions options)
+    public LoginMongoContext(DbContextOptions options)
         : base(options)
     {
     }

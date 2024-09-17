@@ -2,7 +2,7 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Parking.TokenServices;
+namespace Login.TokenServices;
 
 public class PasswordHash 
 {

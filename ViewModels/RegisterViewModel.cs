@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Parking.ViewModels;
+namespace Login.ViewModels;
 
 public class RegisterViewModel
 {

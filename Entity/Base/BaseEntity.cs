@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Parking.Entity;
+namespace Login.Entity;
 
 public class BaseEntity
 {
