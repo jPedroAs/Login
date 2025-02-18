@@ -33,6 +33,8 @@ public class AccountController : ControllerBase
         var response = new ResponseViewModel();
         try
         {
+            var user = await _registerRepository.Get().FirstOrDefaultAsync(x => x.RA == model.RA);
+            if(user != null) return response.GetResponse("Usuário já registrado", HttpStatusCode.BadRequest);
             var pass = _hash.HashPassword(model.Password);
 
             var resgister = new Register
