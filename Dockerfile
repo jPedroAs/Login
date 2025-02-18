@@ -10,13 +10,13 @@ COPY ["src/LoginApi.csproj", "src/"]
 RUN dotnet restore "src/LoginApi.csproj"
 
 COPY . . 
-WORKDIR /src/login
+WORKDIR /src/src
 RUN dotnet build -c $BUILD_CONFIGURATION -o /app/build
 
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-WORKDIR /src/login
+WORKDIR /src/src
 RUN dotnet publish -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 
