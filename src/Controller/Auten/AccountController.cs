@@ -92,7 +92,7 @@ public class AccountController : ControllerBase
             var smtpClient = new SmtpClient("smtp.office365.com", 587)
             {
                 Port = 587,
-                Credentials = new NetworkCredential("joaopedrodxz22@outlook.com", "guerras123"),
+                Credentials = new NetworkCredential(),
                 EnableSsl = true,
                 UseDefaultCredentials = false,
 
@@ -101,7 +101,7 @@ public class AccountController : ControllerBase
             var senha = guid.ToString("N").Substring(0, 10);
             var mailMessage = new MailMessage
             {
-                From = new MailAddress("joaopedrodxz22@outlook.com", "TCC"),
+                From = new MailAddress("joaopedrodxz22@outlook.com", "ae"),
                 Subject = "Gerador de Senha",
                 Body = $"essa é sua senha:{senha}",
                 IsBodyHtml = true,
