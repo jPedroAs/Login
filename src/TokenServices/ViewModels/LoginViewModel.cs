@@ -6,15 +6,14 @@ public class LoginViewModel
 {
     public LoginViewModel()
     {
-        Email = string.Empty;
+        Sing = string.Empty;
         Password = string.Empty;
     }
 
     [Required(ErrorMessage = "Obrigatório")]
-    [EmailAddress(ErrorMessage = "Necessário um email válido")]  
-    public string Email {get; set;}
+    public string Sing {get; set;}
 
     [Required(ErrorMessage = "Senha é Obrigatório e deve ter mais de 8 caracteres")]
-    [StringLength(20, MinimumLength = 8)]
+    [StringLength(20, MinimumLength = 5)]
     public string Password { get; set; }
 }

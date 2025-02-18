@@ -7,21 +7,26 @@ namespace Login.TokenServices;
 
 public class TokenService
 {
+    private readonly IConfiguration _configuration;
+    public TokenService(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
     public string GenerationToken(string email, string name)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(Configuartion.JwtKey);
+        var secret = _configuration["Secret"]; ;
+        var key = Encoding.ASCII.GetBytes(secret);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new Claim[]
             {
                 new (ClaimTypes.Email, email),
-                new (ClaimTypes.Name, name),
-                new (ClaimTypes.Role,"user")
+                new (ClaimTypes.Name, name)
             }),
             Expires = DateTime.UtcNow.AddHours(8),
             SigningCredentials = new SigningCredentials(
-                new SymmetricSecurityKey(key), 
+                new SymmetricSecurityKey(key),
                 SecurityAlgorithms.HmacSha256Signature)
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);

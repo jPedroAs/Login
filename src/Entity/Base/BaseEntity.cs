@@ -1,17 +1,14 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
 
 namespace Login.Entity;
 
 public class BaseEntity
 {
-    // [Key]
-    // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    [BsonId]
-    public ObjectId Id { get; set; }
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
+    public string  Id { get; set; }
 
     [IgnoreDataMember]
     public DateTime? CreateAt { get; set; }

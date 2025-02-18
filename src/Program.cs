@@ -27,25 +27,31 @@ builder.Services.AddAuthentication(x =>
 
 
 #region BD
-var connection = builder.Configuration.GetConnectionString("LoginConnection");
-Console.WriteLine("LoginConnection");
-builder.Services.AddDbContext<LoginMongoContext>((option) => {
-    option.UseMongoDB(connection!, "Login");
+var connection = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ParkingContext>((option) => {
+    option.UseNpgsql(connection);
     option.AddInterceptors(new InterceptorsDTO());
 });
 #endregion
 
 
 builder.Services.AddControllers();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder => builder.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader());
+});
 
 builder.Services.AddTransient<TokenService>();
 builder.Services.AddTransient<PasswordHash>();
 builder.Services.AddTransient<IRepository<Register>, GenericRepository<Register>>();
-var app = builder.Build();
 
+var app = builder.Build();
+app.UseCors("AllowAllOrigins");
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

@@ -7,6 +7,7 @@ using Login.ViewModels;
 using Login.Entity;
 using Login.Infra.Context;
 using Login.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Login.API.Controllers;
 
@@ -16,13 +17,13 @@ public class AccountController : ControllerBase
     private readonly TokenService _tokenService; //Pablo isso aqui serve para gerar um dependência do obj
     private readonly PasswordHash _hash;
     private readonly IRepository<Register>_registerRepository;
-    private readonly LoginMongoContext _mongoContext;
-    public AccountController(TokenService tokenService, PasswordHash hash, IRepository<Register> registerRepository,LoginMongoContext mongoContext )
+    private readonly ParkingContext _Context;
+    public AccountController(TokenService tokenService, PasswordHash hash, IRepository<Register> registerRepository,ParkingContext Context )
     {
         _tokenService = tokenService;
         _hash = hash;
         _registerRepository = registerRepository;
-        _mongoContext = mongoContext;
+        _Context = Context;
     }
 
     [HttpPost("v1/accounts/register")]
@@ -36,11 +37,11 @@ public class AccountController : ControllerBase
                 Name = model.Name,
                 Email = model.Email,
                 Password = pass,
-                Birthday = model.Birthday
+                RA = model.RA
             };
 
             await _registerRepository.AddAsync(resgister);
-            await _mongoContext.SaveChangesAsync();
+            await _Context.SaveChangesAsync();
             return response.GetResponse("Registrado com sucesso.", HttpStatusCode.OK);
         } 
         catch(Exception ex)
@@ -51,12 +52,12 @@ public class AccountController : ControllerBase
 
     //[AllowAnonymous]
     [HttpPost("v1/accounts/login")]
-    public async Task<ResponseViewModel> Login([FromBody]LoginViewModel model)
+    public async Task<ResponseViewModel> SignIn([FromBody]LoginViewModel model)
     {
         var response = new ResponseViewModel();
 
         try{
-            var user =  _registerRepository.Get().FirstOrDefault(f => f.Email == model.Email);
+            var user = await _registerRepository.Get().FirstOrDefaultAsync(f => f.RA == model.Sing || f.Email == model.Sing);
 
             if(user is null) return response.GetResponse("Usuário Não existe", HttpStatusCode.NoContent);
             

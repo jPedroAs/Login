@@ -8,7 +8,7 @@ public class RegisterViewModel
     {
         Name = string.Empty;
         Email = string.Empty;
-        Birthday = string.Empty;
+        RA = string.Empty;
         Password = string.Empty;
     }
     [Required(ErrorMessage = "Obrigatório")]
@@ -21,9 +21,9 @@ public class RegisterViewModel
 
     [Required(ErrorMessage = "Obrigatório")]
     [MaxLength(255)]
-    public string Birthday { get; set; }
+    public string RA { get; set; }
 
     [Required(ErrorMessage = "Senha é Obrigatório e deve ter mais de 8 caracteres")]
-    [StringLength(20, MinimumLength = 8)]
+    [StringLength(20, MinimumLength = 5)]
     public string Password { get; set; }
 }

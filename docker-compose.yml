@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  api_exemplo_render:
+    container_name: api_exemplo_render
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: api_exemplo_render
+    ports:
+      - "8075:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=${DefaultConnection}
+      - Secret=${Secret}

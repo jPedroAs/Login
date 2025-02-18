@@ -47,13 +47,8 @@ dlldata.c
 # DNX
 project.lock.json
 project.fragment.lock.json
-*.appsettings.Development.json
-*.appsettings.json
 *.json
 artifacts/
-
-*.csproj
-*.sln
 
 *_i.c
 *_p.c
@@ -176,6 +171,10 @@ PublishScripts/
 # NuGet v3's project.json files produces more ignoreable files
 *.nuget.props
 *.nuget.targets
+*.appsettings.Development.json
+*.appsettings.json
+*.json
+*.env
 
 # Microsoft Azure Build Output
 csx/
